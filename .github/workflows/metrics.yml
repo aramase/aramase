@@ -75,5 +75,4 @@ jobs:
           user: aramase
           template: classic
           base: activity, community
-          base_indepth: yes
           config_timezone: ${{ secrets.USER_TIMEZONE }}
