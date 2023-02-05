@@ -26,7 +26,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: achievements.svg
-          token: ${{ secrets.METRICS_SECRET }}
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ secrets.GITHUB_TOKEN }}
           user: aramase
           base: achievements
@@ -41,9 +41,7 @@ jobs:
       - uses: lowlighter/metrics@latest
         with:
           filename: issue_pr_lang.svg
-          # You'll need to setup a personal token in your secrets.
-          token: ${{ secrets.METRICS_SECRET }}
-          # GITHUB_TOKEN is a special auto-generated token used for commits
+          token: ${{ secrets.METRICS_TOKEN }}
           committer_token: ${{ secrets.GITHUB_TOKEN }}
           # Options
           user: aramase
