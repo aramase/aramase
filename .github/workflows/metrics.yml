@@ -12,4 +12,43 @@ jobs:
     steps:
       - uses: lowlighter/metrics@latest
         with:
+          filename: header.svg
           token: ${{ secrets.METRICS_TOKEN }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          # Options
+          user: aramase
+          template: classic
+          base: header
+          config_timezone: ${{ secrets.USER_TIMEZONE }}
+  achievements:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: achievements.svg
+          token: ${{ secrets.METRICS_SECRET }}
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          user: aramase
+          base: achievements
+          plugin_achievements: yes
+          plugin_achievements_threshold: B      # Display achievements with rank B or higher
+          plugin_achievements_secrets: yes      # Display unlocked secrets achievements
+          plugin_achievements_display: compact  # Use compact display
+          plugin_achievements_limit: 0          # Display all unlocked achievements (no limit)
+  issue_pr_lang:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          filename: issue_pr_lang.svg
+          # You'll need to setup a personal token in your secrets.
+          token: ${{ secrets.METRICS_SECRET }}
+          # GITHUB_TOKEN is a special auto-generated token used for commits
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          # Options
+          user: aramase
+          template: classic
+          base: ""
+          config_timezone: ${{ secrets.USER_TIMEZONE }}
+          plugin_followup: yes
+          plugin_languages: yes
