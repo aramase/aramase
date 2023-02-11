@@ -1,9 +1,9 @@
 name: Metrics
 on:
-  # Schedule update every 4 hours
-  schedule: [{cron: "0 */4 * * *"}]
+  schedule:
+    - cron: "0 14 * * *" # Every day at 14:00 UTC / 6:00 PST
   workflow_dispatch:
-  push: {branches: ["master", "main"]}
+  push: {branches: ["main"]}
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
