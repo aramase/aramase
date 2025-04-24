@@ -1,78 +1,55 @@
 name: Metrics
+
 on:
   schedule:
     - cron: "0 14 * * *" # Every day at 14:00 UTC / 6:00 PST
   workflow_dispatch:
   push: {branches: ["main"]}
+
 jobs:
   github-metrics:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - uses: lowlighter/metrics@latest
+      - name: left profile 
+        uses: stalomeow/metrics@projects-v2
         with:
-          filename: header.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          filename: github-metrics-left.svg
+
           # Options
           user: aramase
           template: classic
-          base: header
-          config_timezone: ${{ secrets.USER_TIMEZONE }}
-  achievements:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: stalomeow/metrics@projects-v2
+          base: header, activity, community
+          config_timezone: Asia/Shanghai
+          plugin_languages: yes
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_sections: most-used
+          plugin_languages_ignored: html, css
+          plugin_languages_details: percentage #, lines
+          plugin_languages_indepth: yes
+          plugin_languages_analysis_timeout: 30
+          config_padding: 0, 8 + 11%
+          config_order: base.header, base.activity+community, languages #, anilist
+
+      - name: right profile 
+        uses: stalomeow/metrics@projects-v2
         with:
-          filename: achievements.svg
           token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          user: aramase
-          base: achievements
-          plugin_achievements: yes
-          plugin_achievements_threshold: B      # Display achievements with rank B or higher
-          plugin_achievements_secrets: yes      # Display unlocked secrets achievements
-          plugin_achievements_display: compact  # Use compact display
-          plugin_achievements_limit: 0          # Display all unlocked achievements (no limit)
-  iso_calender:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          filename: iso_calender.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
+          filename: github-metrics-right.svg
+
           # Options
           user: aramase
           template: classic
           base: ""
           config_timezone: ${{ secrets.USER_TIMEZONE }}
-          plugin_isocalendar: yes
-          plugin_isocalendar_duration: half-year
-  repositories:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          filename: repositories.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          # Options
-          user: aramase
-          template: classic
-          base: repositories
-          config_timezone: ${{ secrets.USER_TIMEZONE }}
-  activity_community:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: lowlighter/metrics@latest
-        with:
-          filename: activity_community.svg
-          token: ${{ secrets.METRICS_TOKEN }}
-          committer_token: ${{ secrets.GITHUB_TOKEN }}
-          # Options
-          user: aramase
-          template: classic
-          base: activity, community
-          config_timezone: ${{ secrets.USER_TIMEZONE }}
+          plugin_achievements: yes
+          plugin_achievements_threshold: X
+          plugin_achievements_limit: 8
+          plugin_achievements_display: detailed
+          # plugin_stars: yes
+          # plugin_stars_limit: 2
+          config_padding: 0, 8 + 11%
+          config_order: achievements #, stars
