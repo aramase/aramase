@@ -22,7 +22,7 @@ jobs:
           user: aramase
           template: classic
           base: header, activity, community
-          config_timezone: Asia/Shanghai
+          config_timezone: America/Los_Angeles
           plugin_languages: yes
           plugin_languages_colors: github
           plugin_languages_limit: 8
