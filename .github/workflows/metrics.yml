@@ -30,7 +30,7 @@ jobs:
           plugin_languages_ignored: html, css
           plugin_languages_details: percentage #, lines
           plugin_languages_indepth: yes
-          plugin_languages_analysis_timeout: 30
+          plugin_languages_analysis_timeout: 60
           plugin_languages_recent_load: 400
           plugin_languages_recent_days: 14
           config_padding: 0, 8 + 11%
@@ -46,7 +46,7 @@ jobs:
           user: aramase
           template: classic
           base: ""
-          config_timezone: ${{ secrets.USER_TIMEZONE }}
+          config_timezone: America/Los_Angeles
           plugin_achievements: yes
           plugin_achievements_threshold: X
           plugin_achievements_limit: 8
